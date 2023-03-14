@@ -1,0 +1,56 @@
+CREATE TABLE singers (id integer primary key autoincrement,
+name text,
+age integer);
+
+INSERT INTO singers (name, age) VALUES ("Lady Gaga", 36);
+INSERT INTO singers (name, age) VALUES ("Billie Eilish", 21);
+INSERT INTO singers (name, age) VALUES ("Rihanna", 35);
+INSERT INTO singers (name, age) VALUES ("Tori Kelly", 30);
+INSERT INTO singers (name, age) VALUES ("Jojo", 32);
+INSERT INTO singers (name, age) VALUES ("Celine Dion", 54);
+INSERT INTO singers (name, age) VALUES ("Kelly Clarkson", 40);
+INSERT INTO singers (name, age) VALUES ("Ariana Grande", 29);
+INSERT INTO singers (name, age) VALUES ("Britney Spears", 41);
+INSERT INTO singers (name, age) VALUES ("Miley Cyrus", 30);
+
+CREATE TABLE famous_hits (id integer primary key autoincrement,
+person_id integer,
+title text);
+
+INSERT INTO famous_hits (person_id, title) VALUES (1, "Born This Way");
+INSERT INTO famous_hits (person_id, title) VALUES (2, "Bad Guy");
+INSERT INTO famous_hits (person_id, title) VALUES (3, "Don't Stop the Music");
+INSERT INTO famous_hits (person_id, title) VALUES (4, "Nobody Love");
+INSERT INTO famous_hits (person_id, title) VALUES (5, "Too Little Too Late");
+INSERT INTO famous_hits (person_id, title) VALUES (6, "My Heart Will Go On");
+INSERT INTO famous_hits (person_id, title) VALUES (7, "Since U Been Gone");
+INSERT INTO famous_hits (person_id, title) VALUES (8, "God is a Woman");
+INSERT INTO famous_hits (person_id, title) VALUES (9, "Baby One More Time");
+INSERT INTO famous_hits (person_id, title) VALUES (10, "Flowers");
+
+CREATE TABLE popular_albums (id integer primary key autoincrement,
+person_id integer,
+title text);
+
+INSERT INTO popular_albums (person_id, title) VALUES (1, "Born This Way");
+INSERT INTO popular_albums (person_id, title) VALUES (2, "When We All Fall Asleep");
+INSERT INTO popular_albums (person_id, title) VALUES (3, "Anti");
+INSERT INTO popular_albums (person_id, title) VALUES (4, "Unbreakable Smile");
+INSERT INTO popular_albums (person_id, title) VALUES (5, "Jojo");
+INSERT INTO popular_albums (person_id, title) VALUES (6, "Falling Into You");
+INSERT INTO popular_albums (person_id, title) VALUES (7, "Breakaway");
+INSERT INTO popular_albums (person_id, title) VALUES (8, "Dangerous Woman");
+INSERT INTO popular_albums (person_id, title) VALUES (9, "Oops! I Did It Again");
+INSERT INTO popular_albums (person_id, title) VALUES (10, "Bangerz");
+
+SELECT singers.name, singers.age, famous_hits.title
+FROM singers
+INNER JOIN famous_hits
+ON singers.id = famous_hits.id
+ORDER BY singers.age;
+
+SELECT singers.name, singers.age, popular_albums.title
+FROM singers
+LEFT JOIN popular_albums
+ON singers.id = popular_albums.id
+ORDER BY name;
