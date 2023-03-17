@@ -62,39 +62,40 @@ INSERT INTO card_games(date_played,game_name,player_name,score) VALUES ('2015/03
 INSERT INTO card_games(date_played,game_name,player_name,score) VALUES ('2015/03/25','Rummy','Winston',397);
 INSERT INTO card_games(date_played,game_name,player_name,score) VALUES ('2015/03/25','Rummy','Hopper',443);
 
---(VIP) max, avg, min scores--
+#1. What are the max, avg, min scores?
 SELECT game_name, 
 ROUND(MAX(score)) as max_score, 
 ROUND(AVG(score)) as avg_score,  
 ROUND(MIN(score)) as min_score 
 FROM card_games GROUP BY game_name;
 
---above_avg_players_in_Go Fish--
+#2. Who were the above avg players in Go Fish?
 SELECT player_name AS 'above_avg_players_in_Go Fish' 
 FROM card_games 
 WHERE score < 5 
 AND game_name = 'Go Fish' 
 GROUP BY player_name; 
 
--- highest scores w/ player name--
+#3. What were the highest scores w/ player name?
 SELECT game_name, ROUND(MAX(score)) 
 AS all_time_highest_scores, player_name 
 FROM card_games 
 GROUP BY game_name;
 
--- comparing number of games played to sum of all scores--
+#4. What was the comparison of number of games played to sum of all scores?
 SELECT player_name, COUNT(player_name) 
 AS num_matches_played, SUM(score) 
 FROM card_games 
 GROUP BY player_name 
 ORDER BY SUM(score) DESC;
+
 SELECT player_name, COUNT(date_played) 
 AS num_matches_played, SUM(score) 
 FROM card_games 
 GROUP BY player_name 
 HAVING COUNT(date_played) > 10 AND SUM(score) > 2000;
 
--- popularity of games 
+#5. What were the most popular games?
 SELECT game_name, COUNT(game_name) AS num_times_recorded, 
     CASE
         WHEN COUNT(game_name) < 12 THEN "not as popular"
@@ -105,6 +106,7 @@ FROM card_games
 GROUP BY game_name
 ORDER BY game_popularity;
 
+#6. Who were the most avid players?
 SELECT player_name,
     CASE
         WHEN COUNT(date_played) > 10 AND SUM(score) > 1500 THEN "avid players"
