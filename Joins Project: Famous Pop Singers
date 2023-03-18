@@ -54,3 +54,5 @@ FROM singers
 LEFT JOIN popular_albums
 ON singers.id = popular_albums.id
 ORDER BY name;
+
+
