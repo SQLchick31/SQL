@@ -59,4 +59,8 @@ FROM BIT_DB.Spotifydata
 ORDER BY popularity
 LIMIT 1
 
-6. 
+6. What's the average danceability for the 10 most popular songs?
+SELECT artist_name, track_name, avg(danceability)
+FROM BIT_DB.Spotifydata
+ORDER BY artist_name
+LIMIT 10
